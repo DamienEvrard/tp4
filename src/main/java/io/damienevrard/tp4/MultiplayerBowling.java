@@ -23,7 +23,7 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
     
 
     @Override
-    public String startNewGame(String[] playerName) throws Exception {
+    public String startNewGame(String[] playerName){
         this.players=new SinglePlayerGame[playerName.length];
         this.playersName=playerName;
         for(int i=0; i< playerName.length;i++){
@@ -37,13 +37,13 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
     }
 
     @Override
-    public String lancer(int nombreDeQuillesAbattues) throws Exception {
+    public String lancer(int nombreDeQuillesAbattues){
         String message="";
         players[nPlayer % players.length].lancer(nombreDeQuillesAbattues);
         if (nombreDeQuillesAbattues==10){
             message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Strike \nprochain joueur "+playersName[(nPlayer+1) % players.length]+"\n";
             nPlayer++;
-        }else if(score==10){
+        }else if(score+nombreDeQuillesAbattues==10){
             message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Spear \nprochain joueur "+playersName[(nPlayer+1) % players.length]+"\n";
             nPlayer++;
             score=0;
@@ -55,7 +55,7 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
             nbL=0;
             
         }else{
-            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quillesà sa 1ere boule";
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quilles à sa 1ere boule";
             score+=nombreDeQuillesAbattues;
             nbL+=1;
         }
@@ -64,7 +64,7 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
     }
 
     @Override
-    public int scoreFor(String playerName) throws Exception {
+    public int scoreFor(String playerName){
         int val=0;
         int numPlayer=0;
         for(String name : playersName){
