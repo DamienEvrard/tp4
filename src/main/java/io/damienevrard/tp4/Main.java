@@ -19,8 +19,8 @@ public class Main {
        MultiplayerBowling game = new MultiplayerBowling();
        try{
            System.out.println(game.startNewGame(players));
-           for(int i =0;i<11;i++){
-               System.out.println(game.lancer(4));
+           for(int i =0;i<36;i++){
+               System.out.println(game.lancer(10));
            }
            System.out.println("pierre "+game.scoreFor("Pierre"));
            System.out.println("paul "+game.scoreFor("Paul"));

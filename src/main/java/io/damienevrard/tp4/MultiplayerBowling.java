@@ -18,7 +18,8 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
     private SinglePlayerGame players[];
     private String playersName[];
     private int nPlayer;
-    
+    private int score;
+    private int nbL;
     
 
     @Override
@@ -29,6 +30,8 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
             this.players[i]=new SinglePlayerGame();
         }
         this.nPlayer=0;
+        this.score=0;
+        this.nbL=0;
         
         return "partie initialisé avec "+playersName.length+" joueurs";
     }
@@ -38,11 +41,24 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
         String message="";
         players[nPlayer % players.length].lancer(nombreDeQuillesAbattues);
         if (nombreDeQuillesAbattues==10){
-            message="joueur "+playersName[(nPlayer-1) % players.length]+" a fait unStrike";
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Strike";
             nPlayer++;
-        }/*else if(players[nPlayer % players.length]){
+        }else if(score==10){
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Spear";
+            nPlayer++;
+            score=0;
+            nbL=0;
+        }else if(nbL==1){
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quilles";
+            nPlayer++;
+            score=0;
+            nbL=0;
             
-        }*/
+        }else{
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quilles";
+            score+=nombreDeQuillesAbattues;
+            nbL+=1;
+        }
         
         return message;
     }
