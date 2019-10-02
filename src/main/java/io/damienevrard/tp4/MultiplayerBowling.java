@@ -41,21 +41,21 @@ public class MultiplayerBowling implements bowling.MultiPlayerGame {
         String message="";
         players[nPlayer % players.length].lancer(nombreDeQuillesAbattues);
         if (nombreDeQuillesAbattues==10){
-            message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Strike";
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Strike \nprochain joueur "+playersName[(nPlayer+1) % players.length]+"\n";
             nPlayer++;
         }else if(score==10){
-            message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Spear";
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait un Spear \nprochain joueur "+playersName[(nPlayer+1) % players.length]+"\n";
             nPlayer++;
             score=0;
             nbL=0;
         }else if(nbL==1){
-            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quilles";
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quilles à sa 2eme boule pour un total de "+(score+nombreDeQuillesAbattues)+" \nprochain joueur "+playersName[(nPlayer+1) % players.length]+"\n";
             nPlayer++;
             score=0;
             nbL=0;
             
         }else{
-            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quilles";
+            message="joueur "+playersName[(nPlayer) % players.length]+" a fait tomber "+nombreDeQuillesAbattues+" quillesà sa 1ere boule";
             score+=nombreDeQuillesAbattues;
             nbL+=1;
         }
